@@ -17,11 +17,12 @@ Then, create a spec like this:
 ```ruby
 require 'spec_helper'
 
-describe 'http://www.example.com/' do
-  it { is_expected.to find_proxy('http://proxy.example.org:3128/') }
-end
-describe 'http://www.example.org/' do
-  it { is_expected.to find_proxy('DIRECT') }
+describe 'http://proxy.example.org/proxy.pac' do
+  it do
+    is_expected.to find_proxy('http://proxy.example.org:3128/')
+      .for('http://www.example.com/')
+  end
+  it { is_expected.to find_proxy('DIRECT').for('http://www.example.org') }
 end
 
 ## Installation
