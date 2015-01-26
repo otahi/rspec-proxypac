@@ -10,16 +10,17 @@ RSpec::Matchers.define :find_proxy do |expected|
 
   chain :for do |url|
     @target_url = url
-    @chain_string = "for #{url}"
+    @chain_string = " for #{url}"
   end
 
   description do
-    "should find proxy '#{@result_string}' #{@chain_string}"
+    "find proxy '#{@result_string}'#{@chain_string}"
   end
 
   failure_message do
-    s = "expected to find proxy '#{@chain_string}', but did not."
-    s + "\n#{@result_string}"
+    s = "expected to find proxy '#{expected}'#{@chain_string}, but did not."
+    s << "\n  expected: #{expected}"
+    s << "\n  actual:   #{@result_string}"
   end
 
   failure_message_when_negated do
