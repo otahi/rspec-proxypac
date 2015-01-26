@@ -19,11 +19,12 @@ require 'spec_helper'
 
 describe 'http://proxy.example.org/proxy.pac' do
   it do
-    is_expected.to find_proxy('http://proxy.example.org:3128/')
+    is_expected.to find_proxy('PROXY proxy.example.org:3128')
       .for('http://www.example.com/')
   end
   it { is_expected.to find_proxy('DIRECT').for('http://www.example.org') }
 end
+```
 
 ## Installation
 
