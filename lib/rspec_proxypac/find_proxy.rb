@@ -3,7 +3,7 @@ require 'uri'
 
 RSpec::Matchers.define :find_proxy do |expected|
   match do |pacfile|
-    pac = PAC.load(pacfile)
+    pac = RspecProxypac::Pac.pac(pacfile)
     @result_string = pac.find(@target_url)
     @result_string == expected
   end
